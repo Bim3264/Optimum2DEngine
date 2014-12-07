@@ -6,5 +6,6 @@ package optimum2d.main;
 public interface Updater
 {
     public void init();
+    public void input();
     public void update();
 }

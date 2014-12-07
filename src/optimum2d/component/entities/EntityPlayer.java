@@ -1,5 +1,6 @@
 package optimum2d.component.entities;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -7,14 +8,32 @@ import org.lwjgl.opengl.GL11;
  */
 public class EntityPlayer extends Entity
 {
+    public float speed = 1.0f;
+
     public EntityPlayer(String unlocalized_name)
     {
         super(unlocalized_name);
     }
 
-    public void translate(float x, float y)
+    public EntityPlayer updateInput()
     {
-        position.x += x;
-        position.y += y;
+        if (Keyboard.isKeyDown(Keyboard.KEY_W))
+        {
+            position.y += speed;
+        }
+        else if (Keyboard.isKeyDown(Keyboard.KEY_A))
+        {
+            position.x -= speed;
+        }
+        else if (Keyboard.isKeyDown(Keyboard.KEY_S))
+        {
+            position.y -= speed;
+        }
+        else if (Keyboard.isKeyDown(Keyboard.KEY_D))
+        {
+            position.x += speed;
+        }
+
+        return this;
     }
 }

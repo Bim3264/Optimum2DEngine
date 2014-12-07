@@ -25,7 +25,7 @@ public class Entity
         this.loadTexture();
     }
 
-    private void loadTexture()
+    private Entity loadTexture()
     {
         try
         {
@@ -35,9 +35,11 @@ public class Entity
         {
             e.printStackTrace();
         }
+
+        return this;
     }
 
-    private void render()
+    private Entity render()
     {
         texture.bind();
         GL11.glBegin(GL11.GL_QUADS);
@@ -50,5 +52,7 @@ public class Entity
         GL11.glTexCoord2f(0,0);
         GL11.glVertex2f(position.x, position.y + texture.getHeight());
         GL11.glEnd();
+
+        return this;
     }
 }

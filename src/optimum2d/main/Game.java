@@ -34,6 +34,9 @@ public class Game
         while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
         {
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+
+            instance.input();
+
             instance.update();
             Display.update();
             Display.sync(60);
@@ -51,6 +54,11 @@ public class Game
     private void init()
     {
         game.init();
+    }
+
+    private void input()
+    {
+        game.input();
     }
 
     private void update()

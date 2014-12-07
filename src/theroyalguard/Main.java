@@ -25,6 +25,11 @@ public class Main extends Game implements Updater
         Background.loadTexture("test_scene_2.png", 0);
     }
 
+    public void input()
+    {
+
+    }
+
     public void update()
     {
         Background.draw();
