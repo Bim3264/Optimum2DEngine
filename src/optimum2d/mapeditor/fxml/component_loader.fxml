@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button id="add_button" layoutX="14.0" layoutY="336.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Add Component" />
+      <TextField id="component_name" layoutX="142.0" layoutY="336.0" text="Component Name" />
+      <TreeView id="main_tree" fx:id="main_tree" layoutX="14.0" layoutY="14.0" prefHeight="309.0" prefWidth="295.0" />
+   </children>
+</Pane>
