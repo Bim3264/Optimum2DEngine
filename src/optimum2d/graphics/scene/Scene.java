@@ -1,32 +1,26 @@
-package optimum2d.graphics;
+package optimum2d.graphics.scene;
 
 import optimum2d.main.Game;
-import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Created by Biw on 6/12/2557.
  */
-public class Background
+public class Scene
 {
-    public static int current_scene = 0;
     public static Texture texture = null;
 
-    public static HashMap<Integer, Texture> scene_texture = new HashMap<Integer, Texture>();
-
-    public static void loadTexture(String filename, int scene)
+    public static void loadTexture(String filename, int scene_number)
     {
         try
         {
             texture = TextureLoader.getTexture("PNG", new FileInputStream("./res/" + filename));
-            scene_texture.put(scene, texture);
-            texture = scene_texture.get(scene);
+            SceneDivider.bind(texture, scene_number);
         }
         catch (IOException e)
         {
@@ -34,11 +28,17 @@ public class Background
         }
     }
 
-    public static void draw()
+    public static void clear()
     {
-        if (texture != null)
+        GL11.glClearColor(0,0,0,0);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    }
+
+    public static void draw(int scene_number)
+    {
+        if (SceneDivider.getTexture(scene_number) != null)
         {
-            texture.bind();
+            SceneDivider.getTexture(scene_number).bind();
 
             GL11.glBegin(GL11.GL_QUADS);
             GL11.glTexCoord2f(0,1);
@@ -51,14 +51,5 @@ public class Background
             GL11.glVertex2f(0, Game.coreEngine.getHeight());
             GL11.glEnd();
         }
-//        else
-//        {
-//            GL11.glBegin(GL11.GL_QUADS);
-//            GL11.glVertex2f(0,0);
-//            GL11.glVertex2f(Display.getWidth(), 0);
-//            GL11.glVertex2f(Display.getWidth(), Display.getHeight());
-//            GL11.glVertex2f(0, Display.getHeight());
-//            GL11.glEnd();
-//        }
     }
 }

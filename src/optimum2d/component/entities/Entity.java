@@ -14,18 +14,23 @@ import java.util.ArrayList;
  */
 public class Entity
 {
-    public Vector2f position = new Vector2f();
-    public Texture texture = null;
+    public Vector2f position = new Vector2f(0,0);
+    private Texture texture = null;
     public ArrayList<Entity> entities = new ArrayList<Entity>();
     public String unlocalized_name = "unnamed_" + Integer.valueOf(entities.size());
+    public float width, height;
 
     public Entity(String unlocalized_name)
     {
         this.unlocalized_name = unlocalized_name;
         this.loadTexture();
+        this.entities.add(this);
+
+        width = texture.getImageWidth();
+        height = texture.getImageHeight();
     }
 
-    private Entity loadTexture()
+    public Entity loadTexture()
     {
         try
         {
@@ -39,20 +44,34 @@ public class Entity
         return this;
     }
 
-    private Entity render()
+    public Entity render()
     {
-        texture.bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(0,1);
-        GL11.glVertex2f(position.x, position.y);
-        GL11.glTexCoord2f(1,1);
-        GL11.glVertex2f(position.x + texture.getWidth(), position.y);
-        GL11.glTexCoord2f(1,0);
-        GL11.glVertex2f(position.x + texture.getWidth(), position.y + texture.getHeight());
-        GL11.glTexCoord2f(0,0);
-        GL11.glVertex2f(position.x, position.y + texture.getHeight());
-        GL11.glEnd();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        if (texture != null)
+        {
+            texture.bind();
+            GL11.glBegin(GL11.GL_QUADS);
+            GL11.glTexCoord2f(0, 0);
+            GL11.glVertex2f(position.x, position.y);
+            GL11.glTexCoord2f(1, 0);
+            GL11.glVertex2f(position.x + texture.getImageWidth(), position.y);
+            GL11.glTexCoord2f(1, 1);
+            GL11.glVertex2f(position.x + texture.getImageWidth(), position.y + texture.getImageHeight());
+            GL11.glTexCoord2f(0, 1);
+            GL11.glVertex2f(position.x, position.y + texture.getImageHeight());
+            GL11.glEnd();
+        }
 
         return this;
+    }
+
+    public float getWidth()
+    {
+        return this.width;
+    }
+
+    public float getHeight()
+    {
+        return this.height;
     }
 }

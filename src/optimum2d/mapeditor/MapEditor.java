@@ -33,6 +33,12 @@ public class MapEditor extends Game implements Updater
     }
 
     @Override
+    public void input()
+    {
+
+    }
+
+    @Override
     public void update()
     {
 

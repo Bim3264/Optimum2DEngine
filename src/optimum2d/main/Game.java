@@ -1,16 +1,13 @@
 package optimum2d.main;
 
-import optimum2d.graphics.shape.Box;
-import optimum2d.mapeditor.MapEditor;
 import optimum2d.rendering.Camera;
 import optimum2d.rendering.RenderingEngine;
 import optimum2d.rendering.Window;
+import optimum2d.util.Time;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import theroyalguard.Main;
-
-import java.util.ArrayList;
 
 /**
  * Created by Biw on 29/11/2557.
@@ -22,6 +19,10 @@ public class Game
     public static CoreEngine coreEngine = new CoreEngine();
 
     public RenderingEngine renderingEngine = null;
+
+    public long lastFrame;
+    public int fps;
+    public long lastFPS;
 
     public static void launch()
     {
@@ -53,6 +54,8 @@ public class Game
 
     private void init()
     {
+        lastFPS = Time.getTime();
+
         game.init();
     }
 
