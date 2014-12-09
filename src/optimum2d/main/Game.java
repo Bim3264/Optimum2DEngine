@@ -34,7 +34,6 @@ public class Game
 
         while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
         {
-            GL11.glClearColor(0.7f, 0.7f, 0.7f, 1.0f);
             GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
             instance.input();
