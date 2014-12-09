@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Entity
 {
     public Vector2f position = new Vector2f(0,0);
-    private Texture texture = null;
+    public Texture texture = null;
     public ArrayList<Entity> entities = new ArrayList<Entity>();
     public String unlocalized_name = "unnamed_" + Integer.valueOf(entities.size());
     public float width, height;
