@@ -7,6 +7,7 @@ import java.util.HashMap;
 /**
  * Created by Biw on 8/12/2557.
  */
+//TODO: Arthur please do your part fixing the scene changing!
 public class SceneDivider
 {
     public static SceneDivider instance = new SceneDivider();
